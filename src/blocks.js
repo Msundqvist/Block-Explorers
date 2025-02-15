@@ -10,16 +10,21 @@ let client = undefined;
 const initApp = async () => {
     client = createPublicClient({
         chain: localhost,
-        transport: http("http://localhost:7545")
-    })
-    const balance = await client.getBalance({
-        adress: '0xC963cF7168C721c186908eA19BCd5E5cB608F142'
+        transport: http('http://localhost:7545'),
+    });
+    getBalance();
+}
 
-    })
-    subTitle.innerText = `Current Balance : ${balance}`
+
+const getBalance = async () => {
+    const balance = await client.getBalance({
+        adress: '0x6cC8Fc8161A4840cB293855acF342353b0869203'
+
+    });
+    subTitle.innerText = `Current Balance : ${parseFloat(formatEther(balance).toFixed(2))}`
 }
 
 const listAllBlocks = () => {
 
 }
-document.addEventListener('DOMContentLoaded', initApp);
+document.addEventListener('DOMContentLoaded', initApp)
