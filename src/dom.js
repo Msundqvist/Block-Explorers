@@ -16,6 +16,7 @@ export const generateBlockInfo = (block) => {
     let html = '';
     transactionDetailDisplay.innerHTML = html;
 
+
     html = `
     <h2 id  ="blockNumber">Block Number: ${block.number}</h2>
     <article class="trx-details">
@@ -42,13 +43,8 @@ export const generateBlockInfo = (block) => {
     transactionDetailDisplay.innerHTML = html;
 }
 
-export const generateDisplay = (transaction) => {
+export const generateTransactionInfo = (transaction) => {
     let html = '';
-    transactionDetailDisplay.innerHTML = html;
-    if (!transaction) {
-        document.querySelector('.page-title').innerText = 'NO TRANSACTIONS';
-        return;
-    }
 
     html = `
 
@@ -72,5 +68,5 @@ export const generateDisplay = (transaction) => {
         </section >
     </article > `;
 
-    transactionDetailDisplay.innerHTML = html;
+    transactionDetailDisplay.insertAdjacentHTML('beforeend', html)
 };

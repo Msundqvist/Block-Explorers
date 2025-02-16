@@ -1,6 +1,6 @@
 import { createClient } from './helpers/client.js';
 import { getBlock } from 'https://esm.sh/viem/actions';
-import { generateBlockInfo, generateDisplay } from './dom.js';
+import { generateBlockInfo, generateTransactionInfo } from './dom.js';
 
 let client = undefined;
 
@@ -21,9 +21,12 @@ const displayTransactionDetails = async (hash) => {
         const transaction = await client.getTransaction({
             hash: trx,
         });
+        generateTransactionInfo(transaction)
 
     }
 };
+
+
 
 
 document.addEventListener('DOMContentLoaded', initApp);
