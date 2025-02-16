@@ -13,6 +13,7 @@ const initApp = async () => {
         transport: http('http://localhost:7545'),
     });
     getBalance();
+    listAllBlocks();
 }
 
 
@@ -27,7 +28,29 @@ const getBalance = async () => {
 };
 
 
-const listAllBlocks = () => {
+const listAllBlocks = async () => {
+    const blocks = await client.getBlockNumber();
+    console.log('Antal block', blocks);
 
+    for (let i = blocks; i >= 0; i--) {
+        // hämta block med blocknummer
+        const block = await client.getBlock({ blockNumber: i });
+        console.log(block)
+
+        // generera html
+        const div = createElement('div');
+        div.classList.add('section');
+
+        // lägg till blocknmmer
+        div.appendChild(createTextElement('div', block.number));
+        //blockhash
+        div.appendChild(createTextElement('div', block.hash));
+        div.appendChild(createTextElement('div', block.gasUsed));
+        div.appendChild(createTextElement('div', new Date(parseInt(block.timestamp * 1000n)).toLocaleString()
+        )
+        )
+
+        blockList.appendChild(div)
+    }
 }
 document.addEventListener('DOMContentLoaded', initApp)
