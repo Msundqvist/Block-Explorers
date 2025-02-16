@@ -18,11 +18,14 @@ const initApp = async () => {
 
 const getBalance = async () => {
     const balance = await client.getBalance({
-        adress: '0x6cC8Fc8161A4840cB293855acF342353b0869203'
-
+        address: '0xC963cF7168C721c186908eA19BCd5E5cB608F142',
     });
-    subTitle.innerText = `Current Balance : ${parseFloat(formatEther(balance).toFixed(2))}`
-}
+
+    subTitle.innerText = `Current Balance: ${parseFloat(
+        formatEther(balance)
+    ).toFixed(2)}`;
+};
+
 
 const listAllBlocks = () => {
 
