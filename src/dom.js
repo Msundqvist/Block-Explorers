@@ -1,6 +1,7 @@
 import { formatEther } from 'https://esm.sh/viem';
 const transactionDetailDisplay = document.querySelector('#transactionDetails');
 
+
 export const createElement = (elem) => {
     return document.createElement(elem);
 };
