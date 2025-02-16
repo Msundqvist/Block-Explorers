@@ -46,9 +46,19 @@ const listAllBlocks = async () => {
         //blockhash
         div.appendChild(createTextElement('div', block.hash));
         div.appendChild(createTextElement('div', block.gasUsed));
-        div.appendChild(createTextElement('div', new Date(parseInt(block.timestamp * 1000n)).toLocaleString()
+        div.appendChild(createTextElement('div', new Date(parseInt(block.timestamp * 1000n)).toLocaleString('sv-SE')
         )
-        )
+        );
+
+        const button = createElement('a');
+        button.innerText = 'Show';
+        button.classList.add('btn');
+        button.classList.add('btn-rounded');
+        button.style.width = '100px';
+        button.href = `../pages/transaction.html?hash=${block.hash}`;
+
+        div.appendChild(button)
+
 
         blockList.appendChild(div)
     }
