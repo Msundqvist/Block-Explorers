@@ -1,4 +1,5 @@
 import { formatEther } from 'https://esm.sh/viem';
+import { getBlock } from 'https://esm.sh/viem/actions';
 const transactionDetailDisplay = document.querySelector('#transactionDetails');
 
 
@@ -11,13 +12,9 @@ export const createTextElement = (elem, text) => {
     return element;
 };
 
-export const generateDisplay = (block, transaction) => {
+export const generateBlockInfo = (block) => {
     let html = '';
     transactionDetailDisplay.innerHTML = html;
-    if (!transaction) {
-        document.querySelector('.page-title').innerText = 'NO TRANSACTIONS';
-        return;
-    }
 
     html = `
     <h2 id  ="blockNumber">Block Number: ${block.number}</h2>
@@ -41,6 +38,19 @@ export const generateDisplay = (block, transaction) => {
             <small>${block.hash}</small>
         </section>
     </article>
+    `;
+    transactionDetailDisplay.innerHTML = html;
+}
+
+export const generateDisplay = (transaction) => {
+    let html = '';
+    transactionDetailDisplay.innerHTML = html;
+    if (!transaction) {
+        document.querySelector('.page-title').innerText = 'NO TRANSACTIONS';
+        return;
+    }
+
+    html = `
 
     <h2 id ="trxHash">Tx Hash ${transaction.hash}</h2>
     <article class ="trx-details">

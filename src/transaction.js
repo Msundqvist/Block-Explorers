@@ -1,6 +1,6 @@
 import { createClient } from './helpers/client.js';
-import { generateDisplay } from './dom.js';
-
+import { getBlock } from 'https://esm.sh/viem/actions';
+import { generateBlockInfo, generateDisplay } from './dom.js';
 
 let client = undefined;
 
@@ -11,20 +11,19 @@ const initApp = () => {
     displayTransactionDetails(hash);
 };
 
+
 const displayTransactionDetails = async (hash) => {
     const block = await client.getBlock({ blockHash: hash });
 
-    if (block.transactions.length === 0) {
-        generateDisplay(block);
-        return;
-    }
+    generateBlockInfo(block);
 
     for (let trx of block.transactions) {
         const transaction = await client.getTransaction({
             hash: trx,
         });
-        generateDisplay(block, transaction);
+
     }
 };
+
 
 document.addEventListener('DOMContentLoaded', initApp);
