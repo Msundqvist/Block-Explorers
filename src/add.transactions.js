@@ -1,5 +1,6 @@
 import { parseEther } from 'https://esm.sh/viem'
-import { createClient } from './helpers/client.js';
+import { createWallet } from './helpers/client.js'
+
 
 const form = document.querySelector('#transaction-form');
 const fromInput = document.querySelector('#from')
@@ -9,7 +10,7 @@ const valueInput = document.querySelector('#value')
 let client = undefined
 
 const initApp = () => {
-    client = createClient();
+    client = createWallet();
 }
 
 const createTransactions = async (e) => {

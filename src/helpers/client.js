@@ -1,10 +1,15 @@
-import { createPublicClient, http } from "https://esm.sh/viem";
+import { createPublicClient, http, createWalletClient } from "https://esm.sh/viem";
 import { localhost } from 'https://esm.sh/viem/chains';
 
 export const createClient = () => {
-    const client = createPublicClient({
+    return client = createPublicClient({
         chain: localhost,
         transport: http('http://localhost:7545')
     })
-    return client
+}
+export const createWallet = () => {
+    return client = createWalletClient({
+        chain: localhost,
+        transport: http('http://localhost:7545')
+    })
 }
