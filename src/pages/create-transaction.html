@@ -7,7 +7,8 @@
     <script
       src="https://kit.fontawesome.com/55174c58a9.js"
       crossorigin="anonymous"></script>
-    <title>Add Transaction | Viem</title>
+    <script type="module" src="../add.transactions.js"></script>
+    <title>Add Transaction</title>
   </head>
   <body>
     <header>
@@ -51,7 +52,8 @@
             type="text"
             name="from"
             id="from"
-            placeholder="0xd2b63acfC302bFD4B838dD3B681B983edd79e281" />
+            placeholder="0xd2b63acfC302bFD4B838dD3B681B983edd79e281"
+            required />
         </div>
         <div class="form-control">
           <label for="to">To:</label>
@@ -59,7 +61,8 @@
             type="text"
             name="to"
             id="to"
-            placeholder="0x437E71E9db8FD66167aCbbAd1390B518f4c6496" />
+            placeholder="0x437E71E9db8FD66167aCbbAd1390B518f4c6496"
+            required />
         </div>
         <div class="form-control">
           <label for="value">Value:</label>
@@ -67,7 +70,8 @@
             type="text"
             name="value"
             id="value"
-            placeholder="Value in Ether" />
+            placeholder="Value in Ether"
+            required />
         </div>
         <button class="btn btn-rounded">Create</button>
       </form>

@@ -1,5 +1,4 @@
-import { createPublicClient, http } from 'https://esm.sh/viem';
-import { localhost } from 'https://esm.sh/viem/chains';
+import { createClient } from './helpers/client.js';
 import { generateDisplay } from './dom.js';
 
 
@@ -7,10 +6,7 @@ let client = undefined;
 
 const initApp = () => {
     const hash = location.search.split('=')[1];
-    client = createPublicClient({
-        chain: localhost,
-        transport: http('http://localhost:7545'),
-    });
+    client = createClient()
 
     displayTransactionDetails(hash);
 };

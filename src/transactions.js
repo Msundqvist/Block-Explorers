@@ -1,16 +1,13 @@
-import { createPublicClient, http, formatEther } from 'https://esm.sh/viem';
-import { localhost } from 'https://esm.sh/viem/chains';
+import { formatEther } from 'https://esm.sh/viem';
 import { getBlock } from 'https://esm.sh/viem/actions';
 import { createElement, createTextElement } from './dom.js';
+import { createClient } from './helpers/client.js';
 const transactionList = document.querySelector('#list')
 
 let client = undefined;
 
 const initApp = () => {
-    client = createPublicClient({
-        chain: localhost,
-        transport: http('http://localhost:7545')
-    });
+    client = createClient()
     listTransactions()
 }
 
