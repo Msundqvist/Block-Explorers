@@ -30,7 +30,6 @@ const getBalance = async () => {
 
 const listAllBlocks = async () => {
     const blocks = await client.getBlockNumber();
-    console.log('Antal block', blocks);
 
     for (let i = blocks; i >= 0; i--) {
         // hämta block med blocknummer

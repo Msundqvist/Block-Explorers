@@ -14,6 +14,10 @@ export const createTextElement = (elem, text) => {
 export const generateDisplay = (block, transaction) => {
     let html = '';
     transactionDetailDisplay.innerHTML = html;
+    if (!transaction) {
+        document.querySelector('.page-title').innerText = 'NO TRANSACTIONS';
+        return;
+    }
 
     html = `
     <h2 id  ="blockNumber">Block Number: ${block.number}</h2>

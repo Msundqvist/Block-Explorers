@@ -1,5 +1,5 @@
 import { createPublicClient, http } from 'https://esm.sh/viem';
-import { localhost, sepolia } from 'https://esm.sh/viem/chains';
+import { localhost } from 'https://esm.sh/viem/chains';
 import { generateDisplay } from './dom.js';
 
 
@@ -17,6 +17,11 @@ const initApp = () => {
 
 const displayTransactionDetails = async (hash) => {
     const block = await client.getBlock({ blockHash: hash });
+
+    if (block.transactions.length === 0) {
+        generateDisplay(block);
+        return;
+    }
 
     for (let trx of block.transactions) {
         const transaction = await client.getTransaction({
