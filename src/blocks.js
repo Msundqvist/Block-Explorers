@@ -4,6 +4,7 @@ import { createClient } from './helpers/client.js';
 import { createElement, createTextElement } from './dom.js';
 const blockList = document.querySelector('#list')
 const subTitle = document.querySelector('h4')
+const showBlockNumber = document.querySelector('#blockNumber')
 
 let client = undefined;
 
@@ -11,6 +12,8 @@ const initApp = async () => {
     client = createClient();
     getBalance();
     listAllBlocks();
+    showBlockNumbers();
+
 }
 
 
@@ -24,14 +27,28 @@ const getBalance = async () => {
     ).toFixed(2)}`;
 };
 
+const showBlockNumbers = async () => {
+    const block = await client.getBlockNumber();
+
+    const div = createElement('div');
+    const heading = createElement('h4')
+    heading.innerText = `Aktuellt blocknummer: ${block}`
+
+    div.appendChild(heading)
+    showBlockNumber.appendChild(div)
+
+}
+
 
 const listAllBlocks = async () => {
     const blocks = await client.getBlockNumber();
+
 
     for (let i = blocks; i >= 0; i--) {
         const block = await client.getBlock({ blockNumber: i });
 
         const div = createElement('div');
+
         div.classList.add('section');
 
         div.appendChild(createTextElement('div', block.number));
@@ -52,6 +69,8 @@ const listAllBlocks = async () => {
 
 
         blockList.appendChild(div)
+
     }
+
 }
 document.addEventListener('DOMContentLoaded', initApp)
